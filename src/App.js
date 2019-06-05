@@ -28,6 +28,20 @@ class App extends React.Component {
     // this.state.value = value;
     this.setState({ value: event.target.value });
   };
+  saveTodo = () => {
+    if (this.state.value) {
+      const todos = this.state.todos;
+      todos.push(this.state.value);
+      this.setState({ todos });
+      this.clearValue();
+    }
+  };
+
+  clearValue = () => {
+    this.setState({
+      value: ""
+    });
+  };
 
   render() {
     console.log(this.state);
@@ -38,13 +52,20 @@ class App extends React.Component {
           ToDo App
         </Typography>
 
-        <TextField
-          type="text"
-          placeholder="Start typing…"
-          margin="normal"
-          onChange={this.updateValue}
-          value={this.state.value}
-        />
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            this.saveTodo();
+          }}
+        >
+          <TextField
+            type="text"
+            placeholder="Start typing…"
+            margin="normal"
+            onChange={this.updateValue}
+            value={this.state.value}
+          />
+        </form>
       </React.Fragment>
     ); // JSX
   }
