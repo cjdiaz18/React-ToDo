@@ -66,7 +66,7 @@ class App extends React.Component {
 
         <Grid container justify="center">
           <Grid item md={8}>
-            <TodoList />
+            <TodoList todos={this.state.todos} />
           </Grid>
         </Grid>
       </React.Fragment>
