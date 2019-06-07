@@ -33,7 +33,10 @@ class App extends React.Component {
   saveTodo = () => {
     if (this.state.value) {
       const todos = this.state.todos;
-      todos.push(this.state.value);
+      todos.push({
+        value: this.state.value,
+        completed: false
+      });
       this.setState({ todos });
       this.clearValue();
     }
@@ -50,8 +53,13 @@ class App extends React.Component {
     });
   };
 
+  toggleCompleted = index => {
+    const todos = this.state.todos;
+    todos[index].completed = !todos[index].completed;
+    this.setState({ todos });
+  };
   render() {
-    console.log(this.state);
+    // console.log(this.state);
 
     return (
       <React.Fragment>
@@ -70,8 +78,12 @@ class App extends React.Component {
         </Grid>
 
         <Grid container justify="center">
-          <Grid item md={8}>
-            <TodoList todos={this.state.todos} deleteTodo={this.deleteTodo} />
+          <Grid item md={8} sm={10} xs={10}>
+            <TodoList
+              todos={this.state.todos}
+              deleteTodo={this.deleteTodo}
+              toggleCompleted={this.toggleCompleted}
+            />
           </Grid>
         </Grid>
       </React.Fragment>
