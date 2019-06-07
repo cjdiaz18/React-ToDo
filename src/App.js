@@ -1,6 +1,8 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import TodoForm from "./TodoForm";
+import TodoList from "./TodoList";
 
 /**
   Componentes en React
@@ -48,24 +50,25 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
-        <Typography variant="h5" align="center" gutterBottom>
+        <Typography variant="h3" align="center" gutterBottom>
           ToDo App
         </Typography>
 
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            this.saveTodo();
-          }}
-        >
-          <TextField
-            type="text"
-            placeholder="Start typing…"
-            margin="normal"
-            onChange={this.updateValue}
-            value={this.state.value}
-          />
-        </form>
+        <Grid container justify="center">
+          <Grid item>
+            <TodoForm
+              value={this.state.value}
+              updateValue={this.updateValue}
+              saveTodo={this.saveTodo}
+            />
+          </Grid>
+        </Grid>
+
+        <Grid container justify="center">
+          <Grid item md={8}>
+            <TodoList />
+          </Grid>
+        </Grid>
       </React.Fragment>
     ); // JSX
   }
