@@ -10,20 +10,20 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { element } from "prop-types";
 
 const TodoList = props => {
-  const { todos } = props;
-  return (
-    <List>
-      <ListItem dense button>
-        <Checkbox />
-        <ListItemText primary="To-do Title" />
-        <ListItemSecondaryAction>
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </ListItemSecondaryAction>
-      </ListItem>
-    </List>
-  );
+  const { todos, deleteTodo } = props;
+
+  let formattedTodos = todos.map((todo, index) => (
+    <ListItem dense button>
+      <Checkbox />
+      <ListItemText primary={todo} />
+      <ListItemSecondaryAction>
+        <IconButton onClick={() => deleteTodo(index)}>
+          <DeleteIcon />
+        </IconButton>
+      </ListItemSecondaryAction>
+    </ListItem>
+  ));
+  return <List>{formattedTodos}</List>;
 };
 
 export default TodoList;

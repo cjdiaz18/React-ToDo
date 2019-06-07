@@ -39,6 +39,11 @@ class App extends React.Component {
     }
   };
 
+  deleteTodo = index => {
+    const todos = this.state.todos;
+    todos.splice(index, 1);
+    this.setState({ todos });
+  };
   clearValue = () => {
     this.setState({
       value: ""
@@ -66,7 +71,7 @@ class App extends React.Component {
 
         <Grid container justify="center">
           <Grid item md={8}>
-            <TodoList todos={this.state.todos} />
+            <TodoList todos={this.state.todos} deleteTodo={this.deleteTodo} />
           </Grid>
         </Grid>
       </React.Fragment>
